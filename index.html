@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-4 text-center">
+                    <h2>Simple Monster Game</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="char-name">
+                        Hero
+                    </p>
+                    <div class="healthbar">
+                        <div class="healthbar hero" :style="{width: heroHealth +  '%'}">
+                            {{ heroHealth }}
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-6">
+                    <p class="char-name">
+                        Monster
+                    </p>
+                    <div class="healthbar">
+                        <div class="healthbar monster" :style="{width: monsterHealth+  '%'}">
+                            {{ monsterHealth }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4" v-if="!isRunning">
+                <div class="col-12 text-center">
+                    <div class="control-box">
+                        <button class="btn btn-start" @click="startGame">START NEW GAME</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4" v-else="isRunning">
+                <div class="col-12 text-center">
+                    <div class="control-box">
+                        <button class="btn btn-attack" @click="attack">Attack</button>
+                        <button class="btn btn-special-attack">Special Attack</button>
+                        <button class="btn btn-heal">Heal</button>
+                        <button class="btn btn-give-up">Give Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/app.js"></script>
+
+</html>
