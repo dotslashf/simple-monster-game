@@ -3,13 +3,15 @@ new Vue({
 	data: {
 		heroHealth: 100,
 		monsterHealth: 100,
-		isRunning: false
+		isRunning: false,
+		turns: []
 	},
 	methods: {
 		startGame: function() {
 			this.isRunning = true;
 			this.heroHealth = 100;
 			this.monsterHealth = 100;
+			this.turns = [];
 		},
 		calculateDmg: function(min, max) {
 			return Math.max(Math.floor(Math.random() * max) + 1, min);
@@ -18,27 +20,41 @@ new Vue({
 			return Math.max(Math.floor(Math.random() * max) + 1, min);
 		},
 		attack: function() {
-			var damage = this.calculateDmg(5, 10);
-			this.monsterHealth -= damage;
+			var heroDamage = this.calculateDmg(5, 10);
+			this.monsterHealth -= heroDamage;
+			this.turns.unshift({
+				isPlayer: true,
+				text: 'Hero attack Monster for ' + heroDamage
+			});
+			if (this.checkWinner()) {
+				return;
+			}
 
-			var monsterDamage = this.calculateDmg(3, 12);
-			this.heroHealth -= monsterDamage;
-
+			this.monsterAttack(3, 12);
 			this.checkWinner();
 		},
 		specialAttack: function() {
-			var damage = this.calculateDmg(10, 15);
-			this.monsterHealth -= damage;
+			var heroDamage = this.calculateDmg(10, 15);
+			this.monsterHealth -= heroDamage;
+			this.turns.unshift({
+				isPlayer: true,
+				text: 'Hero attack Monster for ' + heroDamage
+			});
+			if (this.checkWinner()) {
+				return;
+			}
 
-			var monsterDamage = this.calculateDmg(3, 9);
-			this.heroHealth -= monsterDamage;
-
+			this.monsterAttack(3, 9);
 			this.checkWinner();
 		},
 		heal: function() {
 			if (this.heroHealth < 100) {
 				var heal = this.calculateHeal(8, 17);
 				this.heroHealth += heal;
+				this.turns.unshift({
+					isPlayer: true,
+					text: 'Hero heals for ' + heal
+				});
 				if (this.heroHealth > 100) {
 					temp = this.heroHealth - 100;
 					this.heroHealth = this.heroHealth - temp;
@@ -48,31 +64,44 @@ new Vue({
 				return;
 			}
 
-			var monsterDamage = this.calculateDmg(3, 12);
-			this.heroHealth -= monsterDamage;
-
+			this.monsterAttack(3, 12);
 			this.checkWinner();
 		},
 		giveUp: function() {
 			var dialogBox = confirm('Are You Sure Want To Give Up?');
 			if (dialogBox) {
 				this.isRunning = false;
-				this.monsterHealth = 100;
-				this.heroHealth = 100;
 			}
+		},
+		monsterAttack: function(min, max) {
+			var monsterDamage = this.calculateDmg(min, max);
+			this.heroHealth -= monsterDamage;
+			this.turns.unshift({
+				isPlayer: false,
+				text: 'Monster attack Hero for ' + monsterDamage
+			});
 		},
 		checkWinner: function() {
 			if (this.monsterHealth <= 0) {
+				if (confirm('You Won! New Game?')) {
+					this.startGame();
+					return;
+				} else {
+					this.isRunning = false;
+				}
 				this.monsterHealth = 0;
-				alert('You Won!');
-				this.isRunning = false;
-				return;
+				return true;
 			} else if (this.heroHealth <= 0) {
+				if (confirm('You Lost! New Game?')) {
+					this.startGame();
+					return;
+				} else {
+					this.isRunning = false;
+				}
 				this.heroHealth = 0;
-				alert('You Lost!');
-				this.isRunning = false;
-				return;
+				return true;
 			}
+			return false;
 		}
 	}
 });

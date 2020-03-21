@@ -57,6 +57,18 @@
                     </div>
                 </div>
             </div>
+            <div class="row mt-4" v-if="turns.length > 0">
+                <div class="col-12 text-center">
+                    <div class="control-box">
+                        <ul>
+                            <li v-for="turn in turns"
+                                :class="{'hero-attack': turn.isPlayer, 'monster-attack': !turn.isPlayer}">
+                                {{turn.text}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -92,3 +92,23 @@ $white: #ecf0f1;
         background-color: darken($color: $white, $amount: 15);
     }
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: .25rem 0rem;
+
+    &.hero-attack {
+        background-color: lighten($color: $hero, $amount: 20);
+        color: darken($color: $hero, $amount: 20);
+    }
+
+    &.monster-attack {
+        background-color: lighten($color: $monster, $amount: 20);
+        color: darken($color: $monster, $amount: 20);
+    }
+}

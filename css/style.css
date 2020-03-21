@@ -85,3 +85,23 @@
 .btn.btn-give-up:hover {
   background-color: #c0cdd1;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: .25rem 0rem;
+}
+
+li.hero-attack {
+  background-color: #7ee2a8;
+  color: #1b7943;
+}
+
+li.monster-attack {
+  background-color: #f29f97;
+  color: #a82315;
+}
