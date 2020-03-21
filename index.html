@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="js/vue.js"></script>
     <title>Document</title>
 </head>
@@ -14,15 +15,15 @@
     <div id="app">
         <div class="container">
             <div class="row">
-                <div class="col-12 mt-4 text-center">
-                    <h2>Simple Monster Game</h2>
+                <div class="col-12 my-5 text-center">
+                    <h2 class="">Simple Monster Game</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                    <p class="char-name">
+                    <h4 class="hero">
                         Hero
-                    </p>
+                    </h4>
                     <div class="healthbar">
                         <div class="healthbar hero" :style="{width: heroHealth +  '%'}">
                             {{ heroHealth }}
@@ -33,9 +34,9 @@
                     </div>
                 </div>
                 <div class=" col-6">
-                    <p class="char-name">
+                    <h4 class="monster">
                         Monster
-                    </p>
+                    </h4>
                     <div class="healthbar">
                         <div class="healthbar monster" :style="{width: monsterHealth+  '%'}">
                             {{ monsterHealth }}
