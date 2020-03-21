@@ -27,6 +27,28 @@
   color: white;
 }
 
+.manabar {
+  width: 100%;
+  background-color: #e1f0fa;
+  color: #ecf0f1;
+  text-align: center;
+  -webkit-transition: width 500ms;
+  transition: width 500ms;
+  margin-top: .5rem;
+  border-radius: 1rem;
+  font-size: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.manabar .manabar-hero {
+  border-radius: 1rem;
+  width: 100%;
+  background-color: #8bc4ea;
+  margin: 4px;
+}
+
 .control-box {
   border: 1px solid #dae2ea;
   padding: 1.5rem;

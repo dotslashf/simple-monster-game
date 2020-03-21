@@ -35,6 +35,25 @@ $white: #ecf0f1;
     }
 }
 
+.manabar {
+    width: 100%;
+    background-color: lighten($color: $start, $amount: 40);
+    color: $white;
+    text-align: center;
+    transition: width 500ms;
+    margin-top: .5rem;
+    border-radius: 1rem;
+    font-size: 10px;
+    display: flex;
+
+    .manabar-hero {
+        border-radius: 1rem;
+        width: 100%;
+        background-color: lighten($color: $start, $amount: 20);
+        margin: 4px;
+    }
+}
+
 .control-box {
     border: 1px solid lighten($color: $darken, $amount: 60);
     padding: 1.5rem;
